@@ -1,7 +1,7 @@
 import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
-
+import { displayAddedMessage } from './utils/displaymessage.js';
 let productsHTML = '';
 
 products.forEach((product) => {
@@ -45,7 +45,7 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart js-added-to-cart js-added-to-cart-${product.id}">
         <img src="images/icons/checkmark.png">
         Added
       </div>
@@ -77,5 +77,6 @@ document.querySelectorAll('.js-add-to-cart')
       const productId = button.dataset.productId;
       addToCart(productId);
       updateCartQuantity();
+      displayAddedMessage(productId);
     });
   });
